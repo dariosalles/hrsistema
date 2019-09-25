@@ -26,24 +26,35 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    {{ __('Início') }}
-                </a>
-                <a class="navbar-brand" href="{{ route('notificacoes') }}">
-                    {{ __('Notificações') }}
-                </a>
+                 <!-- Menu -->
+                 @guest
 
-                <a class="navbar-brand" href="{{ route('anotacoes') }}">
-                    {{ __('Anotações') }}
-                </a>
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        {{ __('Controle de Patrimônio') }}
+                    </a>
 
-                <a class="navbar-brand" href="{{ route('perfil') }}">
-                    {{ __('Perfil') }}
-                </a>
+                 @else
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        {{ __('Início') }}
+                    </a>
+                    <a class="navbar-brand" href="{{ route('notificacoes') }}">
+                        {{ __('Notificações') }}
+                    </a>
+
+                    <a class="navbar-brand" href="{{ route('anotacoes') }}">
+                        {{ __('Anotações') }}
+                    </a>
+
+                    <a class="navbar-brand" href="{{ route('perfil') }}">
+                        {{ __('Perfil') }}
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                @endguest
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
