@@ -1,0 +1,72 @@
+@extends('layouts.app')
+
+@section('content')
+
+<div class="container">
+
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <form action="{{ route('store') }}" method="POST"> <!-- INICIO FORM -->
+            @csrf
+                 <div class="grid-container">
+
+                    <div class="grid-item">
+                    PLACA <input name="placa" class="cadform" type="number" required style="font-size: 14px;">
+                    </div>
+
+                    <div class="grid-item">
+                        EQUIPAMENTO
+                            <select name="equipamento" class="cadform" style="font-size: 14px;" required>
+                             <option>Selecione...</option>
+                            </select>
+                    </div>
+
+                    <div class="grid-item">
+                        SETOR INICIAL
+                           <select name="setorinicial" class="cadform" style="font-size: 14px;" required>>
+                            <option>Selecione...</option>
+                           </select>
+
+
+                    </div>
+
+                    <div class="grid-item">
+                        SETOR FINAL
+                        <select name="setorfinal" class="cadform" style="font-size: 14px;" required>>
+                         <option>Selecione...</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-item">
+                         DATA
+                        <input name="data" class="cadform" type="date" style="font-size: 14px;" required>
+                    </div>
+
+                    <div class="grid-item">
+                        STATUS
+                           <select name="status" class="cadform" style="font-size: 14px;">
+                            <option>Selecione...</option>
+                           </select>
+                    </div>
+
+                    <div class="grid-item">
+                        OBSERVAÇÃO
+                            <textarea rows="4" cols="50" required name="obs"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <input type="submit" value="Salvar">
+
+            </div>
+
+
+            </form>
+</div>
+@endsection

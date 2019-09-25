@@ -20,23 +20,26 @@ Route::get('/', function () {
 
 
 
-    Route::get('/', 'LoginController@Login');
+    Route::resource('/', 'HomeController');
 
-    Route::resource('/itens', 'ItensController');
+    Route::get('/cadastro', 'HomeController@create')->name('cadastro');
 
-    //Route::get('/itens', 'ItensController@index');
+    Route::get('/editar/{id}', 'HomeController@edit')->name('editar');
 
-    Route::get('/itens/cadastro', 'ItensController@create');
+    Route::get('/cadastro', 'HomeController@create')->name('adicionar');
 
-    Route::get('/notificacoes', 'NotificacoesController@index');
+    Route::get('/excluir/{id}', 'HomeController@destroy')->name('excluir');
 
-    Route::get('/perfil', 'PerfilController@index');
-
-    Route::get('/anotacoes', 'AnotacoesController@index');
+    Route::post('store', 'HomeController@store')->name('gravar');
 
 
+    Route::get('/notificacoes', 'NotificacoesController@index')->name('notificacoes');
+
+    Route::get('/perfil', 'PerfilController@index')->name('perfil');
+
+    Route::get('/anotacoes', 'AnotacoesController@index')->name('anotacoes');
 
 
+Auth::routes();
 
-
-
+Route::get('/home', 'HomeController@index')->name('home');
