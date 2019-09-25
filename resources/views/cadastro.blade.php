@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <form action="{{ route('store') }}" method="POST"> <!-- INICIO FORM -->
+        <form action="{{ route('gravar') }}" method="POST"> <!-- INICIO FORM -->
             @csrf
                  <div class="grid-container">
 
