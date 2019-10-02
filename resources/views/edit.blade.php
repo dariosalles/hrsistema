@@ -10,19 +10,38 @@
             </div>
         @endif
 
-        <form action="" method="POST"> <!-- INICIO FORM -->
+        @foreach ($item as $c)
+
+        <form action="{{ route('salvar', $c->id_patrimonio) }}" method="POST"> <!-- INICIO FORM -->
             @csrf
-            @method('PUT')
+
             <div class="grid-container">
 
-                @foreach ($item as $c)
+
+
+                <input type="hidden" value="{{ $c->id_patrimonio }}" name="id">
+
                 <div class="grid-item">
-                    PLACA <input name="{{ $c->placa }}" class="cadform" type="text" required style="font-size: 14px;" value=" {{ $c-> placa }}">
+                    PLACA <input name="placa" class="cadform" type="text" required style="font-size: 14px;" value=" {{ $c-> placa }}">
                 </div>
 
                 <div class="grid-item">
                     EQUIPAMENTO <select name="equipamento" class="cadform" style="font-size: 14px;">
-                    <option value="{{ $c->equipamento }}">{{ $c->equipamento }}</option>
+
+                        @foreach ($equipamentos as $equip)
+
+                            @if($equip->equipamento == $c->equipamento)
+
+                                <option value='{{$equip->equipamento}}' selected>{{ $equip->equipamento }}</option>
+
+                            @else
+                                <option value='{{$equip->equipamento}}'>{{ $equip->equipamento }}</option>
+
+                            @endif
+
+                        @endforeach
+
+
 
                             </select>
                 </div>
@@ -31,7 +50,22 @@
                     SETOR INICIAL
 
                         <select name="setorinicial" class="cadform" style="font-size: 14px;" required>>
-                            <option value=" {{ $c->setorinicial }}" selected>{{ $c->setorinicial }}</option>
+
+                            @foreach ($setores as $s)
+
+                                @if($s->setor == $c->setorinicial)
+
+                                    <option selected value='{{$s->setor}}'>{{ $s->setor }}</option>
+
+                                @else
+
+                                    <option value='{{$s->setor}}'>{{ $s->setor }}</option>
+
+                                @endif
+
+                            @endforeach
+
+
 
 
                         </select>
@@ -41,10 +75,23 @@
 
                 <div class="grid-item">
                     SETOR FINAL
-                        <select name="setorfinal" class="cadform" style="font-size: 14px;" required>>
-                            <option value=" {{ $c->setorfinal }}" selected>{{ $c->setorfinal }}</option>
+                        <select name="setorfinal" class="cadform" style="font-size: 14px;" required>
 
-                            </select>
+                            @foreach ($setores as $s)
+
+                                @if($s->setor == $c->setorfinal)
+
+                                    <option selected value='{{$s->setor}}'>{{ $s->setor }}</option>
+
+                                @else
+
+                                    <option value='{{$s->setor}}'>{{ $s->setor }}</option>
+
+                                @endif
+
+                            @endforeach
+
+                        </select>
                 </div>
 
                 <div class="grid-item">
@@ -54,7 +101,19 @@
                 <div class="grid-item">
                     STATUS <select name="status" class="cadform" style="font-size: 14px;">
 
-                        <option value=" {{ $c->status }}" selected>{{ $c->status }}</option>
+                        @foreach ($status as $st)
+
+                            @if($st->status == $c->status)
+
+                                <option selected value='{{$st->status}}'>{{ $st->status }}</option>
+
+                            @else
+
+                                <option value='{{$st->status}}'>{{ $st->status }}</option>
+
+                            @endif
+
+                    @endforeach
 
                         </select>
                 </div>

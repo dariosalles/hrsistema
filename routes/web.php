@@ -32,6 +32,8 @@ Route::get('/', function () {
 
     Route::post('store', 'HomeController@store')->name('gravar');
 
+    Route::post('/update/{id}', 'HomeController@update')->name('salvar');
+
 
     Route::get('/notificacoes', 'NotificacoesController@index')->name('notificacoes');
 

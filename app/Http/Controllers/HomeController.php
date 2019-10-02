@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\tb_setores;
+use App\tb_equip;
+use App\tb_status;
 
 class HomeController extends Controller
 {
@@ -32,7 +35,18 @@ class HomeController extends Controller
 
     public function create()
     {
-        return view('cadastro');
+        $setores = tb_setores::orderBy('setor', 'asc')->get();
+        $equipamentos = tb_equip::orderBy('equipamento', 'asc')->get();
+        $status = tb_status::orderBy('status', 'asc')->get();
+        //where('id_setor',1)->get();
+        //dd($equipamentos);
+
+        //foreach ($setores as $setor) {
+          //  echo $setor->name;
+       // }
+       //$d = array($setores,$equipamentos);
+
+        return view('cadastro', compact('equipamentos','setores','status'));
     }
 
 
@@ -62,6 +76,11 @@ class HomeController extends Controller
 
     public function edit($id)
     {
+
+        $setores = tb_setores::orderBy('setor', 'asc')->get();
+        $equipamentos = tb_equip::orderBy('equipamento', 'asc')->get();
+        $status = tb_status::orderBy('status', 'asc')->get();
+
         $item = DB::table('tb_patrimonio')
                 ->when($id, function ($query, $id) {
                     return $query->where('id_patrimonio', $id);
@@ -70,7 +89,7 @@ class HomeController extends Controller
 
         //dd($item);
 
-        return view('edit', compact('item'));
+        return view('edit', compact('item','setores','equipamentos','status'));
     }
 
         /**
@@ -88,7 +107,18 @@ class HomeController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+
+        //dd($request);
+
+        $update = $request->all();
+
+        DB::table('tb_patrimonio')->where('id_patrimonio', $id)
+        ->update(['placa' => $update['placa'],'equipamento' => $update['equipamento'], 'setorinicial' => $update['setorinicial'], 'setorfinal' => $update['setorfinal'], 'data' => $update['data'], 'obs' => $update['obs'], 'status' => $update['status'] ]);
+
+        //tb_patrimonio::where('id_patrimonio', $id)
+          //->update(['placa' => 1,'equipamento' => 'EQUIPAMENTO', 'setorinicial' => 'SETORINICIAL', 'setorfinal' => 'SETORFINAL', 'data' => '2019-10-02', 'obs' => 'TESTE', 'status' => 'TESTE' ]);
+
+          return redirect('home');
     }
 
     /**
@@ -101,7 +131,9 @@ class HomeController extends Controller
 
     public function destroy($id)
     {
-        //
+        DB::table('tb_patrimonios')->where('id_patrimonio', $id)->delete();
+
+        return redirect('home');
     }
 
 }

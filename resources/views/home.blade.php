@@ -32,8 +32,9 @@
                     </tr>
                 </thead>
 
-                    <tr>
+
                         @foreach ($itens as $campo)
+                        <tr>
                             <td align="center"><a href="{{ route('editar', $campo->id_patrimonio) }}"><i class="fas fa-edit fa-2x"></i></a></td>
                             <td> {{ $campo->placa }} </td>
                             <td> {{ $campo->equipamento }} </td>
@@ -43,7 +44,7 @@
                             <td> {{ $campo->obs }} </td>
                             <td> {{ $campo->status }} </td>
                             <td align="center"> <a href="{{ route('excluir', $campo->id_patrimonio) }}"><i class="fas fa-trash-alt fa-2x"></i></a> </td>
-                    </tr>
+                        </tr>
                         @endforeach
 
 

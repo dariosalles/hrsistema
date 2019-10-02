@@ -21,14 +21,19 @@
                     <div class="grid-item">
                         EQUIPAMENTO
                             <select name="equipamento" class="cadform" style="font-size: 14px;" required>
-                             <option>Selecione...</option>
+                                @foreach ($equipamentos as $equip)
+                                    <option value='{{$equip->equipamento}}'>{{ $equip->equipamento }}</option>
+                                @endforeach
                             </select>
                     </div>
 
                     <div class="grid-item">
                         SETOR INICIAL
                            <select name="setorinicial" class="cadform" style="font-size: 14px;" required>>
-                            <option>Selecione...</option>
+                                @foreach ($setores as $setor)
+                                    <option value='{{$setor->setor}}'>{{ $setor->setor }}</option>
+                                @endforeach
+
                            </select>
 
 
@@ -37,7 +42,9 @@
                     <div class="grid-item">
                         SETOR FINAL
                         <select name="setorfinal" class="cadform" style="font-size: 14px;" required>>
-                         <option>Selecione...</option>
+                                @foreach ($setores as $setor)
+                                    <option value='{{$setor->setor}}'>{{ $setor->setor }}</option>
+                                @endforeach
                         </select>
                     </div>
 
@@ -49,7 +56,9 @@
                     <div class="grid-item">
                         STATUS
                            <select name="status" class="cadform" style="font-size: 14px;">
-                            <option>Selecione...</option>
+                                @foreach ($status as $st)
+                                    <option value='{{$st->status}}'>{{ $st->status }}</option>
+                                @endforeach
                            </select>
                     </div>
 
