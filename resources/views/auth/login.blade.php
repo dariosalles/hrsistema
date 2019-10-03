@@ -25,8 +25,15 @@
                             </div>
                         </div> --}}
 
+                        <div class="logo">
+                            <img class="imglogo" src="{{ asset('img/logo.png') }}">
+                        </div>
+
 
                         <div class="form-group row">
+
+
+
                             <label for="registro" class="col-md-4 col-form-label text-md-right">{{ __('Registro') }}</label>
 
                             <div class="col-md-6">
@@ -80,8 +87,22 @@
                             </div>
                         </div>
                     </form>
+
+
+
                 </div>
+
+
             </div>
+
+            <div class="logoemp">
+                    <img class="imgemp" src="{{ asset('img/logoemp.png') }}">
+                </div>
+
+                <div class="empname">Controle Patrimonial</div>
+
+                <div class="version">V 1.0</div>
+
         </div>
     </div>
 </div>

@@ -47,4 +47,54 @@
 	cursor: pointer;
 }
 
+.logo {
+	position: relative;
+	width: 100%;
+	max-width: 200px;
+	margin: auto;
+    margin-top: 25px;
+    margin-bottom: 22px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.imglogo {
+	width: 100%;
+	max-width: 100px;
+	margin-left: auto;
+	box-sizing: border-box;
+}
+
+.logoemp {
+	width: 100%;
+	max-width: 150px;
+	height: 40px;
+	margin-top: 70px;
+	margin: auto;
+	margin-top: 60px;
+	box-sizing: border-box;
+	}
+
+.imgemp{
+	width: 100%;
+	max-width: 150px;
+	height: 36px;
+	margin: auto;
+}
+
+.empname {
+	margin: auto;
+	margin-top: 10px;
+	text-align: center;
+	font-size: 12px;
+	color: #999999;
+}
+
+.version {
+	text-align: right;
+	margin-right: 10px;
+	font-size: 10px;
+	color: #999999;
+}
+
  /* FIM MEUS ESTILOS */
