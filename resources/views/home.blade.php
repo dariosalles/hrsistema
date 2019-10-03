@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+{!! Toastr::render() !!}
 <div class="container">
 
                     @if (session('status'))

@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -19,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -30,25 +32,27 @@
                  @guest
 
                     <a class="navbar-brand" href="{{ route('home') }}">
+                        <i class="fas fa-archive fa-2x"></i>
                         {{ __('Controle de Patrimônio') }}
                     </a>
 
                  @else
 
                     <a class="navbar-brand" href="{{ route('home') }}">
+                        <i class="fas fa-home"></i>
                         {{ __('Início') }}
                     </a>
                     <a class="navbar-brand" href="{{ route('notificacoes') }}">
+                        <i class="fas fa-comment-alt"></i>
                         {{ __('Notificações') }}
                     </a>
 
                     <a class="navbar-brand" href="{{ route('anotacoes') }}">
+                        <i class="fas fa-pencil-alt"></i>
                         {{ __('Anotações') }}
                     </a>
 
-                    <a class="navbar-brand" href="{{ route('perfil') }}">
-                        {{ __('Perfil') }}
-                    </a>
+
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -83,11 +87,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('perfil') }}">
+                                       {{ __('Meu perfil') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}
                                     </a>
+
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -105,7 +116,7 @@
         </main>
     </div>
 
-   
+
 
 </body>
 </html>

@@ -53,3 +53,12 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+try {
+    window.$ = window.jQuery = require('jquery');
+
+    require('bootstrap');
+
+    window.toastr = require('toastr');
+
+  } catch (e) { }

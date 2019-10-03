@@ -8,6 +8,8 @@ use App\tb_setores;
 use App\tb_equip;
 use App\tb_status;
 
+use TJGazel\Toastr\Facades\Toastr;
+
 class HomeController extends Controller
 {
     /**
@@ -18,6 +20,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -25,10 +28,27 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $alerta = $request->query('alerta');
+
          // conteudo do db tb_patrimonio
          $itens = DB::table('tb_patrimonio')->orderBy('id_patrimonio', 'desc')->get();
+
+         if($alerta==null) {
+            Toastr::success('Bem vindo ao Sistema!');
+         }elseif($alerta=='cadastrook') {
+            Toastr::success('Cadastro realizado com sucesso!');
+         }elseif($alerta=='atualizadook') {
+            Toastr::success('Registro atualizado com sucesso!');
+         }elseif($alerta=='excluidook') {
+            Toastr::error('Registro deletado com sucesso!');
+         }else {
+
+         }
+
+
+
 
         return view('home', compact('itens'));
     }
@@ -69,9 +89,13 @@ class HomeController extends Controller
 
         ]);
 
-        return redirect('home');
 
 
+        $alerta = 'cadastrook';
+
+        return redirect()->action(
+            'HomeController@index', ['alerta' => $alerta]
+        );
     }
 
     public function edit($id)
@@ -112,13 +136,21 @@ class HomeController extends Controller
 
         $update = $request->all();
 
+        //dd($update);
+
         DB::table('tb_patrimonio')->where('id_patrimonio', $id)
         ->update(['placa' => $update['placa'],'equipamento' => $update['equipamento'], 'setorinicial' => $update['setorinicial'], 'setorfinal' => $update['setorfinal'], 'data' => $update['data'], 'obs' => $update['obs'], 'status' => $update['status'] ]);
 
         //tb_patrimonio::where('id_patrimonio', $id)
           //->update(['placa' => 1,'equipamento' => 'EQUIPAMENTO', 'setorinicial' => 'SETORINICIAL', 'setorfinal' => 'SETORFINAL', 'data' => '2019-10-02', 'obs' => 'TESTE', 'status' => 'TESTE' ]);
 
-          return redirect('home');
+          $alerta = "atualizadook";
+
+          return redirect()->action(
+            'HomeController@index', ['alerta' => $alerta]
+          );
+
+          //return redirect('home');
     }
 
     /**
@@ -131,9 +163,14 @@ class HomeController extends Controller
 
     public function destroy($id)
     {
-        DB::table('tb_patrimonios')->where('id_patrimonio', $id)->delete();
+        DB::table('tb_patrimonio')->where('id_patrimonio', $id)->delete();
 
-        return redirect('home');
+        $alerta = 'excluidook';
+
+        return redirect()->action(
+            'HomeController@index', ['alerta' => $alerta]
+        );
+
     }
 
 }
