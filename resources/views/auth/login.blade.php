@@ -2,6 +2,10 @@
 
 @section('content')
 <div class="container">
+        <div class="logo">
+                <img class="imglogo" src="{{ asset('img/logo.png') }}">
+        </div>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -25,9 +29,7 @@
                             </div>
                         </div> --}}
 
-                        <div class="logo">
-                            <img class="imglogo" src="{{ asset('img/logo.png') }}">
-                        </div>
+
 
 
                         <div class="form-group row">
