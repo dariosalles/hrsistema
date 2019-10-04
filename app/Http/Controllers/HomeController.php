@@ -21,6 +21,8 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
 
+        Toastr::success('Bem vindo ao Sistema!');
+
     }
 
     /**
@@ -35,9 +37,9 @@ class HomeController extends Controller
          // conteudo do db tb_patrimonio
          $itens = DB::table('tb_patrimonio')->orderBy('id_patrimonio', 'desc')->get();
 
-         if($alerta==null) {
-            Toastr::success('Bem vindo ao Sistema!');
-         }elseif($alerta=='cadastrook') {
+         //if($alerta==null) {
+            //Toastr::success('Bem vindo ao Sistema!');
+         if($alerta=='cadastrook') {
             Toastr::success('Cadastro realizado com sucesso!');
          }elseif($alerta=='atualizadook') {
             Toastr::success('Registro atualizado com sucesso!');

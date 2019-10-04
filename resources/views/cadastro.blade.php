@@ -71,7 +71,7 @@
                 </div>
 
 
-                <input type="submit" value="Salvar">
+                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Salvar">
 
             </div>
 

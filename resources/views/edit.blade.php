@@ -119,8 +119,11 @@
                 </div>
 
                 <div class="grid-item">
-                    OBSERVAÇÃO
-                    <textarea rows="4" cols="50" required name="obs">{{ $c->obs }}</textarea>
+
+
+                    <label for="exampleFormControlTextarea1">OBSERVAÇÃO</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="obs">{{ $c->obs }}</textarea>
+
 
                 </div>
 
@@ -131,9 +134,9 @@
 
              </div>
 
-             <div class="save">
-                <input type="submit" value="Salvar">
-            </div>
+
+                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Atualizar">
+
             </div>
 
         </form> <!-- FIM FORM -->

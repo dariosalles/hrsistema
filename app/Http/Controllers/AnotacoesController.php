@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class AnotacoesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,7 @@ class AnotacoesController extends Controller
      */
     public function index()
     {
-        echo "ANotações";
+        return view('anotacoes');
     }
 
     /**
