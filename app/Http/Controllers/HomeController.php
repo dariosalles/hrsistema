@@ -169,6 +169,8 @@ class HomeController extends Controller
 
         $alerta = 'excluidook';
 
+        //dd($alerta);
+
         return redirect()->action(
             'HomeController@index', ['alerta' => $alerta]
         );

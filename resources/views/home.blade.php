@@ -16,6 +16,36 @@
         <a href="{{ route ('adicionar') }}"><button type="button" class="btn btn-primary btn-lg">Adicionar</button></a>
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmação de Exclusão</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="">
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">ID do Registro</label>
+                      <input type="text" class="form-control" id="recipient-name" disabled>
+                    </div>
+
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Excluir</button></a>
+                    </div>
+
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
     <div id="tabela">
 
             <table id="tabelaitens" class="table table-striped table-bordered">
@@ -44,11 +74,28 @@
                             <td> {{ $campo->data }} </td>
                             <td> {{ $campo->obs }} </td>
                             <td> {{ $campo->status }} </td>
-                            <td align="center"> <a href="{{ route('excluir', $campo->id_patrimonio) }}"><i class="fas fa-trash-alt fa-2x"></i></a> </td>
+
+                            <td> <a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="{{$campo->id_patrimonio}}"><i class="fas fa-trash-alt fa-2x"></i></a> <br><br>
+
+
                         </tr>
                         @endforeach
 
+                        <script type="text/javascript">
+                        $('#exampleModal').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget) // Botão que acionou o modal
+                            var recipient = button.data('whatever') // Extraindo informações do atributo data-*
 
+                            var modal = $(this)
+                            modal.find('.modal-title').text('Tem certeza que deseja excluir este registro?')
+                            modal.find('.modal-body input').val(recipient)
+
+                            var redirect = 'excluir/' + recipient;
+
+                            modal.find('.modal-body form').attr('action', redirect);
+
+                          })
+                        </script>
 
 
              </table>
@@ -102,7 +149,9 @@
     );
     });
 
-    </script>
+   </script>
+
+
 
 
 @endsection
