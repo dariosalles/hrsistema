@@ -37,4 +37,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // add 14/10 para substituir o campo de entrada email (login) padrão laravel
+    public function username()
+    {
+        return 'registro';
+    }
 }
