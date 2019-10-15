@@ -21,7 +21,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
 
-
+        Toastr::success('Bem vindo ao Sistema!');
 
     }
 
@@ -35,10 +35,7 @@ class HomeController extends Controller
         $alerta = $request->query('alerta');
 
          // conteudo do db tb_patrimonio
-         $itens = DB::table('tb_patrimonio')
-                 ->orderBy('id_patrimonio', 'desc')->get();
-
-         //dd($itens);
+         $itens = DB::table('tb_patrimonio')->orderBy('id_patrimonio', 'desc')->get();
 
          //if($alerta==null) {
             //Toastr::success('Bem vindo ao Sistema!');
@@ -49,7 +46,7 @@ class HomeController extends Controller
          }elseif($alerta=='excluidook') {
             Toastr::error('Registro deletado com sucesso!');
          }else {
-            Toastr::success('Bem vindo ao Sistema!');
+
          }
 
 
@@ -61,7 +58,6 @@ class HomeController extends Controller
     public function create()
     {
         $setores = tb_setores::orderBy('setor', 'asc')->get();
-        
         $equipamentos = tb_equip::orderBy('equipamento', 'asc')->get();
         $status = tb_status::orderBy('status', 'asc')->get();
         //where('id_setor',1)->get();
@@ -75,7 +71,7 @@ class HomeController extends Controller
         return view('cadastro', compact('equipamentos','setores','status'));
     }
 
-    // salvar dados do formulario
+
     public function store(Request $request)
     {
 
@@ -108,9 +104,7 @@ class HomeController extends Controller
     {
 
         $setores = tb_setores::orderBy('setor', 'asc')->get();
-
         $equipamentos = tb_equip::orderBy('equipamento', 'asc')->get();
-
         $status = tb_status::orderBy('status', 'asc')->get();
 
         $item = DB::table('tb_patrimonio')
